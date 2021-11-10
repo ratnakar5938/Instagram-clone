@@ -1,6 +1,6 @@
 export const USERS = [
     {
-        user: "Your Story",
+        user: "Ratnakar5938",
         image: "https://instagram.fbbi3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/238832867_875890196363592_3825221227035550099_n.jpg?_nc_ht=instagram.fbbi3-1.fna.fbcdn.net&_nc_ohc=99uNaVm4MLcAX9WWsdG&edm=ALbqBD0BAAAA&ccb=7-4&oh=831fecbb589f8d3cb54e9b095b87c06f&oe=618EEE6F&_nc_sid=9a90d6",
     },
     {
