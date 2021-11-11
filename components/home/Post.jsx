@@ -97,6 +97,7 @@ const PostFooter = ({ post }) => {
                         imgUrl={PostFooterIcons[2].imageUrl}
                     />
                 </View>
+
                 <View>
                     <Icon
                         imgStyle={styles.saveIcon}
@@ -104,33 +105,43 @@ const PostFooter = ({ post }) => {
                     />
                 </View>
             </View>
-            <Text style={{ color: "white", margin: 5 }}>{`Liked by ${
-                post.comments[0].user
-            } and ${post.likes - 1} others`}</Text>
+
+            <View style={{ margin: 5, flexDirection: "row" }}>
+                <Text style={{ color: "white" }}>{`Liked by `}</Text>
+                <Text
+                    style={{ color: "white", fontWeight: "700" }}
+                >{`${post.comments[0].user} `}</Text>
+                <Text style={{ color: "white" }}>{`and`}</Text>
+                <Text style={{ color: "white", fontWeight: "700" }}>{` ${
+                    post.likes - 1
+                } others`}</Text>
+            </View>
+
             <View style={{ marginLeft: 5, flexDirection: "row" }}>
-                <Text style={{ color: "white", fontWeight: "600" }}>
+                <Text style={{ color: "white", fontWeight: "700" }}>
                     {post.user}
                 </Text>
                 <Text style={{ color: "white", marginLeft: 5 }}>
                     {post.caption}
                 </Text>
             </View>
-            <Text
-                style={{ color: "gray", margin: 5 }}
-            >{`View all ${post.comments.length} comments`}</Text>
+
+            <Text style={{ color: "gray", margin: 5 }}>
+                {`View all ${post.comments.length} comments`}
+            </Text>
+
             {post.comments.map((comment, index) => (
                 <View
                     style={{
-                        marginLeft: 5,
+                        marginHorizontal: 5,
                         marginBottom: 5,
-                        marginRight: 5,
                         flexDirection: "row",
                         justifyContent: "space-between",
                     }}
                     key={index}
                 >
                     <View style={{ flexDirection: "row" }}>
-                        <Text style={{ color: "white", fontWeight: "600" }}>
+                        <Text style={{ color: "white", fontWeight: "700" }}>
                             {comment.user}
                         </Text>
                         <Text style={{ color: "white", marginLeft: 5 }}>
