@@ -54,14 +54,13 @@ const PostHeader = ({ post }) => {
 };
 
 const PostImage = ({ post }) => {
-    const Height = post.height;
     return (
         <View
             style={{
                 width: "100%",
                 flex: 1,
                 resizeMode: "contain",
-                height: Height,
+                height: post.height,
             }}
         >
             <Image
@@ -125,17 +124,25 @@ const Icon = ({ imgStyle, imgUrl }) => (
 );
 
 const Likes = ({ post }) => {
-    return post.comments.length ? (
-        <View style={{ margin: 5, flexDirection: "row" }}>
-            <Text style={{ color: "white" }}>{`Liked by `}</Text>
-            <Text
-                style={{ color: "white", fontWeight: "700" }}
-            >{`${post.comments[0].user} `}</Text>
-            <Text style={{ color: "white" }}>{`and`}</Text>
-            <Text style={{ color: "white", fontWeight: "700" }}>{` ${
-                post.likes - 1
-            } others`}</Text>
-        </View>
+    return post.comments ? (
+        post.comments.length ? (
+            <View style={{ margin: 5, flexDirection: "row" }}>
+                <Text style={{ color: "white" }}>{`Liked by `}</Text>
+                <Text
+                    style={{ color: "white", fontWeight: "700" }}
+                >{`${post.comments[0].user} `}</Text>
+                <Text style={{ color: "white" }}>{`and`}</Text>
+                <Text style={{ color: "white", fontWeight: "700" }}>{` ${
+                    post.likes - 1
+                } others`}</Text>
+            </View>
+        ) : (
+            <View style={{ margin: 5, flexDirection: "row" }}>
+                <Text
+                    style={{ color: "white", fontWeight: "600" }}
+                >{`${post.likes} likes`}</Text>
+            </View>
+        )
     ) : (
         <View style={{ margin: 5, flexDirection: "row" }}>
             <Text
@@ -171,57 +178,65 @@ const Caption = ({ post }) => {
 };
 
 const MoreComments = ({ post }) => {
-    return post.comments.length > 2 ? (
-        <Text
-            style={{
-                color: "gray",
-                marginHorizontal: 5,
-                marginBottom: 5,
-            }}
-        >
-            {`View all ${post.comments.length} comments`}
-        </Text>
+    return post.comments ? (
+        post.comments.length > 2 ? (
+            <Text
+                style={{
+                    color: "gray",
+                    marginHorizontal: 5,
+                    marginBottom: 5,
+                }}
+            >
+                {`View all ${post.comments.length} comments`}
+            </Text>
+        ) : (
+            <Text></Text>
+        )
     ) : (
-        <Text></Text>
+        <View></View>
     );
 };
 
 const Comments = ({ post }) => {
-    return post.comments.length ? (
-        post.comments.slice(0, 2).map((comment, index) => (
-            <View
-                style={{
-                    marginHorizontal: 5,
-                    marginBottom: 5,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                }}
-                key={index}
-            >
-                <View style={{ flexDirection: "row" }}>
-                    <Text style={{ color: "white", fontWeight: "700" }}>
-                        {comment.user}
-                        {` `}
-                        <Text
-                            style={{
-                                color: "white",
-                                marginLeft: 5,
-                                fontWeight: "normal",
-                            }}
-                        >
-                            {comment.comment}
+    return post.comments ? (
+        post.comments.length ? (
+            post.comments.slice(0, 2).map((comment, index) => (
+                <View
+                    style={{
+                        marginHorizontal: 5,
+                        marginBottom: 5,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                    key={index}
+                >
+                    <View style={{ flexDirection: "row" }}>
+                        <Text style={{ color: "white", fontWeight: "700" }}>
+                            {comment.user}
+                            {` `}
+                            <Text
+                                style={{
+                                    color: "white",
+                                    marginLeft: 5,
+                                    fontWeight: "normal",
+                                }}
+                            >
+                                {comment.comment}
+                            </Text>
                         </Text>
-                    </Text>
+                    </View>
+                    <View>
+                        <Icon
+                            imgStyle={{ width: 13, height: 13 }}
+                            imgUrl={PostFooterIcons[0].imageUrl}
+                        />
+                    </View>
                 </View>
-                <View>
-                    <Icon
-                        imgStyle={{ width: 13, height: 13 }}
-                        imgUrl={PostFooterIcons[0].imageUrl}
-                    />
-                </View>
-            </View>
-        ))
+            ))
+        ) : (
+            <View></View>
+        )
     ) : (
         <View></View>
     );
